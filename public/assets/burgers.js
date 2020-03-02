@@ -2,11 +2,9 @@ $(function () {
     $(".devour-button").on("click", function (event) {
         var id = $(this).data("id");
 
-        $.ajax({
-            url: "/api/burgers/" + id,
-            type: "PUT",
-        })
-            .then(() => {
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT"
+        }).then(() => {
                 console.log("Burger moved to devoured");
                 location.reload();
             });
@@ -15,11 +13,9 @@ $(function () {
     $(".delete-button").on("click", function (event) {
         var id = $(this).data("id");
 
-        $.ajax({
-            url: "/api/burgers/" + id,
+        $.ajax("/api/burgers/" + id, {
             type: "DELETE"
-        })
-            .then(() => {
+        }).then(() => {
                 console.log("Burger deleted");
                 location.reload();
             });
@@ -32,12 +28,10 @@ $(function () {
             name: $("#burger").val().trim()
         }
 
-            .ajax({
-                url: "/api/burgers",
+            .ajax("/api/burgers", {
                 type: "POST",
                 data: newBurger
-            })
-            .then(() => {
+            }).then(() => {
                 console.log("New burger added");
                 location.reload();
             });
